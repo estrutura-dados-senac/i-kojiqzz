@@ -1,7 +1,6 @@
 package ex;
 
-
-public class Ex02ProfundidadeDoNo {
+public class Ex03AlturaDoNo {
     static class Node{
         Node left;
         Node right;
@@ -10,25 +9,28 @@ public class Ex02ProfundidadeDoNo {
         Node(String nome){
             this.nome = nome;
         }
-
-        
-        public static int profundidade(Node raiz, String alvo){
+        public static int buscarNO(Node raiz, String alvo){
             if(raiz == null){
                 return -1;
             }
             if (raiz.nome.equals(alvo)) {
-                return 0;
+                return altura(raiz);
             }
 
-            int esquerda = profundidade(raiz.left, alvo);
-            if(esquerda != -1){
-                return esquerda + 1;
+            int esquerda = buscarNO(raiz.left, alvo);
+            if(esquerda != null){
+                return esquerda;
             }
-            int direita = profundidade(raiz.right, alvo);
-            if(direita != -1){
-                return direita + 1;
+            return buscarNO(raiz.right, alvo);
+        }
+        public static int altura(Node raiz){
+            if(raiz == null){
+                return 0;
             }
-            return -1;
+    
+            int alturaEsquerda = altura(raiz.left);
+            int alturaDireita = altura(raiz.right);
+            return 1 + Math.max(alturaEsquerda, alturaDireita);
         }
         public static Node exemploPastas(){
             Node raiz = new Node("/");
@@ -39,11 +41,12 @@ public class Ex02ProfundidadeDoNo {
             return raiz;
         
         }
+        
         public static void main (String[] args){
             Node raiz = exemploPastas();
-            System.out.println(profundidade(raiz, "documents"));
-            System.out.println(profundidade(raiz, "etc"));
+            System.out.println(buscarNO(raiz, "documents"));
+            System.out.println(buscarNO(raiz, "etc"));
         }  
         
-    }
+ }
 }

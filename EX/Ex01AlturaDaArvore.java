@@ -1,4 +1,4 @@
-package EX;
+package ex;
 public class Ex01AlturaDaArvore{
     static class Node{
         Node left;
