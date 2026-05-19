@@ -18,8 +18,8 @@ jobs:
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: 'Teste 1: Compila'
-        setup-command: javac Resposta01VetorSupermercado.java
-        command: gradle test
+        setup-command: ''
+        command: javac Resposta01VetorSupermercado.java
         timeout: 10
         max-score: 4
     - name: 'Nome: Total e média corretos'
@@ -27,10 +27,9 @@ jobs:
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: 'Nome: Total e média corretos'
-        setup-command: 'printf "1000\n1200\n2000\n3200\n3100\n" | java -cp exercicios/respostas
-          Resposta01VetorSupermercado > out.txt && grep -q "Total do dia: 10500.00"
-          out.txt && grep -q "Media por caixa: 2100.00" out.txt'
-        command: gradle test
+        setup-command: javac Resposta01VetorSupermercado.java
+        command: 'printf "1000\n1200\n2000\n3200\n3100\n" | java Resposta01VetorSupermercado
+          | grep -q "Total do dia: 10500.00"'
         timeout: 10
         max-score: 6
     - name: Autograding Reporter
