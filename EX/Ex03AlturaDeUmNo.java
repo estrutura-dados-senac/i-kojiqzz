@@ -1,8 +1,9 @@
 package EX;
 
-public class Ex01AlturaDaArvore {
+public class Ex03AlturaDeUmNo {
 
     static class Node {
+
         Node left;
         Node right;
         String nome;
@@ -10,6 +11,25 @@ public class Ex01AlturaDaArvore {
         Node(String nome) {
             this.nome = nome;
         }
+    }
+
+    public static int buscarNO(Node raiz, String alvo) {
+
+        if (raiz == null) {
+            return -1;
+        }
+
+        if (raiz.nome.equals(alvo)) {
+            return altura(raiz);
+        }
+
+        int esquerda = buscarNO(raiz.left, alvo);
+
+        if (esquerda != -1) {
+            return esquerda;
+        }
+
+        return buscarNO(raiz.right, alvo);
     }
 
     public static int altura(Node raiz) {
@@ -35,5 +55,13 @@ public class Ex01AlturaDaArvore {
         raiz.left.left.left = new Node("documents");
 
         return raiz;
+    }
+
+    public static void main(String[] args) {
+
+        Node raiz = exemploPastas();
+
+        System.out.println(buscarNO(raiz, "documents"));
+        System.out.println(buscarNO(raiz, "etc"));
     }
 }

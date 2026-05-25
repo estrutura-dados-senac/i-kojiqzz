@@ -1,4 +1,4 @@
-package ex;
+package EX;
 
 
 public class Ex02ProfundidadeDoNo {
